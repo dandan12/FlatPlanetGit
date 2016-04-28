@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<span>0</span>
+
+<button type="button" class="btn btn-primary">
+    Counter
+</button>
+
+
+@section scripts {
+    <script type="text/javascript">
+        var count = 0;
+
+        $("button").click(function () {
+            if (count <= 10) {
+                $.ajax({
+                    type: "POST",
+                    url: "/counter/insert/" + count,
+                    async: false,
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+                $("span").text(count++);
+            }
+            
+        });
+    </script>
+}
